@@ -1,0 +1,1 @@
+export { Throttle, SkipThrottle } from '@nestjs/throttler';

@@ -7,7 +7,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "watch": "webpack --watch",
-    "build": "nest build",
+    "build": "pnpm run clean && pnpm run compile",
+    "clean": "del /q dist && del /q tsconfig.build.tsbuildinfo",
+    "compile": "tsc -b tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",

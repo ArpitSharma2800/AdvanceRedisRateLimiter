@@ -4,6 +4,7 @@ import { RedisConnection } from './utils/config/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { ThrottlerStorageRedisService } from '@nest-lab/throttler-storage-redis';
 import { Redis } from 'ioredis';
+import { ConfigModule } from '../config-module/configmodule.module';
 
 const throttlerStorage = (config: RedisConnection) => {
     if (config.clusterMode) {
@@ -56,7 +57,7 @@ export class RateLimitingModule {
             imports: [
                 ThrottlerModule.forRootAsync({
                     imports: [
-                        // ConfigModule.Register(storageConfig)
+                        ConfigModule.register(storageConfig)
                     ],
                     inject: [storageConfig],
                     useFactory: (config: RedisConnection) => ({
