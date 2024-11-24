@@ -4,6 +4,7 @@
         "declaration": true,
         "declarationMap": true,
         "rootDir": "./src",
+        "experimentalDecorators": true,
     },
     "include": [
         "src"

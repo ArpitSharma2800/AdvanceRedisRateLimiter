@@ -48,18 +48,20 @@ export class RateLimitingModule {
     // static async registerAsync is a design pattern used 
     // in custom modules to allow asynchronous, dynamic 
     // configuration when the module is being imported into other parts of the application.
+
     static async registerAsync(
         storageConfig: Type<RedisConnection>,
         rateLimitConfig: RateLimitConfig[]
     ): Promise<DynamicModule> {
+        const configModule = ConfigModule.register(storageConfig);
+
         return {
             module: RateLimitingModule,
             imports: [
+                configModule,  // Import the config module first
                 ThrottlerModule.forRootAsync({
-                    imports: [
-                        ConfigModule.register(storageConfig)
-                    ],
-                    inject: [storageConfig],
+                    imports: [configModule],  // Re-import the config module
+                    inject: [storageConfig.name],  // Use the class name as the injection token
                     useFactory: (config: RedisConnection) => ({
                         throttlers: rateLimitConfig.map((config) => ({
                             name: config.name,
@@ -70,7 +72,7 @@ export class RateLimitingModule {
                     }),
                 })
             ],
-            providers: []
+            exports: [ThrottlerModule]
         }
     }
 }

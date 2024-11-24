@@ -1,10 +1,12 @@
-import { RedisConnection } from "@predator/common";
+import { Injectable } from '@nestjs/common';
+import { RedisConnection } from '@predator/common';
 
+@Injectable()
 export class RedisConn implements RedisConnection {
-    readonly redisHost: string = process.env.REDIS_HOST || 'localhost';
-    readonly redisPort: number = parseInt(process.env.REDIS_PORT || '6379', 10);
-    readonly redisUsername: string = process.env.REDIS_USERNAME || '';
-    readonly redisPassword: string = process.env.REDIS_PASSWORD || '';
-    readonly redisDb: number = parseInt(process.env.REDIS_DB || '0', 10);
-    readonly clusterMode: boolean = process.env.REDIS_CLUSTER_MODE === 'true';
+    redisHost: string = 'localhost';  // or from env
+    redisPort: number = 6379;         // or from env
+    redisPassword: string = '';       // or from env
+    redisUsername: string = '';       // or from env
+    redisDb: number = 0;             // or from env
+    clusterMode: boolean = false;     // or from env
 }

@@ -8,10 +8,6 @@ import 'reflect-metadata';
     exports: []
 })
 export class ConfigModule {
-
-
-
-
     /**
    * Registers the configuration module with the specified configuration class
    * @param configurationClass The class to use for configuration

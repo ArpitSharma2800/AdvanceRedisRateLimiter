@@ -7,7 +7,7 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule);
   applyCors(app);
-  setupSwagger(app);
+  setupSwagger(app as INestApplication);
   await app.listen(process.env.PORT ?? 3000);
 
   function setupSwagger(app: INestApplication) {

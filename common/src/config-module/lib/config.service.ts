@@ -1,7 +1,7 @@
 import { Type } from '@nestjs/common';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
-
+import { validate } from 'class-validator';
 
 /**
    * Creates a configuration instance by merging environment variables, .env files, and defaults
@@ -45,7 +45,6 @@ export async function createConfiguration<T>(
             instance[key] = this.convertValue(value, typeof defaultValue);
         }
     }
-
     return instance;
 }
 
