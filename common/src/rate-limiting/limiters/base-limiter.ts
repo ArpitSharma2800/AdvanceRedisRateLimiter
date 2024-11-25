@@ -4,9 +4,9 @@ import { getRequestIp, RequestRateTracker } from "../tracker/limit.tracker";
 import { ExecutionContext } from "@nestjs/common";
 
 export abstract class BaseLimiter extends ThrottlerGuard {
-    private readonly excludedRoutes: string[];
+    private readonly excludedRoutes: string[] = [];
 
-    private readonly excludedIp: string[];
+    private readonly excludedIp: string[] = [];
 
     protected constructor(
         protected readonly options: ThrottlerModuleOptions,
@@ -15,8 +15,9 @@ export abstract class BaseLimiter extends ThrottlerGuard {
         protected readonly tracker: RequestRateTracker,
     ) {
         super(options, storageService, reflector);
+        console.log("BaseLimiter constructor");
         const ENV = process.env.ENV || 'development';
-        this.excludedRoutes = ["127.0.0.1"];
+        // this.excludedRoutes = ["127.0.0.1"];
     }
 
     protected async shouldSkip(_context: ExecutionContext): Promise<boolean> {
@@ -50,10 +51,12 @@ export abstract class BaseLimiter extends ThrottlerGuard {
     }
 
     protected getTracker(req: Record<string, any>): Promise<string> {
+        console.log("getTracker");
         return this.tracker.getTracker(req);
     }
 
     protected generateKey(context: ExecutionContext, suffix: string, name: string): string {
+        console.log("generateKey");
         return this.tracker.generateKey(context, suffix, name);
     }
 }

@@ -4,15 +4,16 @@ import { RequestTracker } from "./tracker.provider";
 
 export class RequestRateTracker implements RequestTracker {
     async getTracker(req: Record<string, any>): Promise<string> {
-        // Try to get IP from various headers first
         const ip = getRequestIp(req);
-
-        return ip;
+        return `ip(${ip})`;
     }
 
     generateKey(req: ExecutionContext, suffix: string, name: string): string {
         const prefix = `${req.getClass().name}-${req.getHandler().name}`;
-        return `${prefix}:${suffix}`;
+        const key = `${prefix}:${name}:${suffix}`;
+
+        console.log(`Generated rate limit key: ${key}`);
+        return key;
     }
 }
 

@@ -13,7 +13,7 @@
   "scripts": {
     "watch": "webpack --watch",
     "build": "pnpm run clean && pnpm run compile",
-    "clean": "del /q dist && del /q tsconfig.build.tsbuildinfo",
+    "clean": "rm -rf dist && rm -f tsconfig.build.tsbuildinfo",
     "compile": "tsc -b tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "tsc -p tsconfig.build.json --watch --preserveWatchOutput",

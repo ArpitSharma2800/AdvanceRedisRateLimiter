@@ -6,7 +6,7 @@ import { Throttle } from '@predator/common';
 export class AppController {
   constructor(private readonly appService: AppService) { }
 
-  @Throttle({ "service-one": { limit: 10, ttl: 60 * 60 * 1000 } })
+  @Throttle({ "service": { limit: 10, ttl: 60 * 60 * 1000 } })
   @Get()
   getHello(): string {
     return this.appService.getHello();

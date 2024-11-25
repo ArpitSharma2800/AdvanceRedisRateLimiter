@@ -14,10 +14,6 @@ export class RequestRateLimiter extends BaseLimiter {
         @Inject(Reflector)
         protected readonly reflector: Reflector,
     ) {
-        console.log('RequestRateLimiter constructor called');
-        console.log('Options:', options);
-        console.log('StorageService:', storageService);
-        console.log('Reflector:', reflector);
         super(options, storageService, reflector, new RequestRateTracker());
     }
 }

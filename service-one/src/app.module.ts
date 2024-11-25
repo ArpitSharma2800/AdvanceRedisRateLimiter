@@ -10,7 +10,7 @@ import { RequestRateLimiter } from '@predator/common';
     RateLimitingModule.registerAsync(RedisConn, [
       {
         name: 'service-one',
-        window: 1000,
+        window: 10000,
         requests: 1
       }
     ])

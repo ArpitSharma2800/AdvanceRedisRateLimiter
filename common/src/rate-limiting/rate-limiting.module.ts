@@ -72,7 +72,6 @@ export class RateLimitingModule {
                     }),
                 })
             ],
-            exports: [ThrottlerModule]
         }
     }
 }
