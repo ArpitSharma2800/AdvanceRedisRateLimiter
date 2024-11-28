@@ -11,7 +11,6 @@ export class RequestRateTracker implements RequestTracker {
     generateKey(req: ExecutionContext, suffix: string, name: string): string {
         const prefix = `${req.getClass().name}-${req.getHandler().name}`;
         const key = `${prefix}:${name}:${suffix}`;
-
         console.log(`Generated rate limit key: ${key}`);
         return key;
     }
